@@ -1,6 +1,6 @@
 import Channel from "jschannel/src/jschannel";
 
-class MyToolsConnector {
+class PageToolsConnector {
     constructor() {
         this.channel = Channel.build({window: window.parent, origin: "*", scope: "extensionScope"});
     }
@@ -34,4 +34,4 @@ class MyToolsConnector {
     }
 }
 
-export default MyToolsConnector;
+export default PageToolsConnector;

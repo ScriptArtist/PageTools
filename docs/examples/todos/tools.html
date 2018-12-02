@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>test</title>
-    <script src="/assets/myToolsConnector.js"></script>
+    <script src="/assets/pageToolsConnector.js"></script>
 </head>
 <body>
 <h3>Controls</h3>
@@ -15,7 +15,7 @@
 <div id="todos_count"></div>
 
 <script type="text/javascript">
-    var connection = new MyToolsConnector();
+    var connection = new PageToolsConnector();
 
     connection.on("store_update", function(params) {
         renderTodosCount(params.todos);

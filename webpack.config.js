@@ -1,11 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
-const libraryName = 'MyToolsConnector';
+const libraryName = 'PageToolsConnector';
 
 module.exports = {
     entry: {
-        'myToolsConnector': './src/myToolsConnector.js',
-        'myToolsConnector.min': './src/myToolsConnector.js'
+        'pageToolsConnector': './src/pageToolsConnector.js',
+        'pageToolsConnector.min': './src/pageToolsConnector.js'
     },
     devtool: "source-map",
     output: {

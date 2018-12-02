@@ -2,11 +2,11 @@
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
-		define("MyToolsConnector", [], factory);
+		define("PageToolsConnector", [], factory);
 	else if(typeof exports === 'object')
-		exports["MyToolsConnector"] = factory();
+		exports["PageToolsConnector"] = factory();
 	else
-		root["MyToolsConnector"] = factory();
+		root["PageToolsConnector"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -96,14 +96,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MyToolsConnector = function () {
-    function MyToolsConnector() {
-        _classCallCheck(this, MyToolsConnector);
+var PageToolsConnector = function () {
+    function PageToolsConnector() {
+        _classCallCheck(this, PageToolsConnector);
 
         this.channel = _jschannel2.default.build({ window: window.parent, origin: "*", scope: "extensionScope" });
     }
 
-    _createClass(MyToolsConnector, [{
+    _createClass(PageToolsConnector, [{
         key: "on",
         value: function on(name, handler) {
             this.channel.bind("event", function (trans, data) {
@@ -136,10 +136,10 @@ var MyToolsConnector = function () {
         }
     }]);
 
-    return MyToolsConnector;
+    return PageToolsConnector;
 }();
 
-exports.default = MyToolsConnector;
+exports.default = PageToolsConnector;
 
 /***/ }),
 /* 1 */
@@ -910,4 +910,4 @@ exports.default = MyToolsConnector;
 /***/ })
 /******/ ])["default"];
 });
-//# sourceMappingURL=myToolsConnector.js.map
+//# sourceMappingURL=pageToolsConnector.js.map
