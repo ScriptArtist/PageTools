@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="/assets/myToolsConnector.js"></script>
+</head>
+<body>
+<h3>Controls</h3>
+<input type="button" value="Generate test items" onclick="onGenerateItemsClick()">
+<input type="button" value="Toggle status" onclick="onToggleStatusClick()">
+<input type="button" value="Clear Completed" onclick="onClearCompletedClick()">
+<input type="button" value="Clear all" onclick="onClearAllClick()">
+<h3>Items</h3>
+<div id="todos_count"></div>
+
+<script type="text/javascript">
+    var connection = new MyToolsConnector();
+
+    connection.on("store_update", function(params) {
+        renderTodosCount(params.todos);
+    });
+
+    connection.eval(`app.todo.storage.findAll(function(todos) {
+                        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'my-tools-extension'}, '*');
+                     })`);
+
+    function onGenerateItemsClick() {
+        connection.eval(`
+           app.todo.controller.addItem('Hit the gym');
+           app.todo.controller.addItem('Pay bills');
+           app.todo.controller.addItem('Meet George');
+           app.todo.controller.addItem('Buy eggs');
+           app.todo.controller.addItem('Read a book');
+           app.todo.controller.addItem('Read a book');
+           app.todo.controller.addItem('Organize office');
+        `);
+    }
+
+    function onToggleStatusClick() {
+        connection.eval(`
+            qs('.toggle-all').click();
+        `);
+    }
+
+    function onClearCompletedClick() {
+        connection.eval(`
+            app.todo.controller.removeCompletedItems();
+        `);
+    }
+
+    function onClearAllClick() {
+        connection.eval(`
+            app.todo.controller.toggleAll(true);
+            app.todo.controller.removeCompletedItems();
+        `);
+    }
+
+    function renderTodosCount(items) {
+        var todos = {
+            active: 0,
+            completed: 0,
+            total: 0
+        };
+
+        items.forEach(function (todo) {
+            if (todo.completed) {
+                todos.completed++;
+            } else {
+                todos.active++;
+            }
+
+            todos.total++;
+        });
+
+        document.getElementById('todos_count').innerHTML = `
+            <ul>
+                <li>Active: ${todos.active}</li>
+                <li>Completed: ${todos.completed}</li>
+                <li>Total: ${todos.total}</li>
+            </ul>
+        `;
+    }
+</script>
+</body>
+</html>
