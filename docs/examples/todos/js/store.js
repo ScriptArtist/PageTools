@@ -100,7 +100,7 @@
 			callback.call(this, [updateData]);
 		}
 
-        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'my-tools-extension'}, '*');
+        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'page-tools-extension'}, '*');
 	};
 
 	/**
@@ -122,7 +122,7 @@
 		localStorage.setItem(this._dbName, JSON.stringify(todos));
 		callback.call(this, todos);
 
-        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'my-tools-extension'}, '*');
+        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'page-tools-extension'}, '*');
     };
 
 	/**

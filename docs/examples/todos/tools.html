@@ -22,7 +22,7 @@
     });
 
     connection.eval(`app.todo.storage.findAll(function(todos) {
-                        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'my-tools-extension'}, '*');
+                        window.postMessage({name: 'store_update', params: { todos: todos }, source: 'page-tools-extension'}, '*');
                      })`);
 
     function onGenerateItemsClick() {
