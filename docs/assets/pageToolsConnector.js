@@ -101,9 +101,19 @@ var PageToolsConnector = function () {
         _classCallCheck(this, PageToolsConnector);
 
         this.channel = _jschannel2.default.build({ window: window.parent, origin: "*", scope: "extensionScope" });
+
+        this._init();
     }
 
     _createClass(PageToolsConnector, [{
+        key: "_init",
+        value: function _init() {
+            this.emit('init', {
+                location: document.location.href,
+                toolsUrl: document.querySelector('meta[name="chrome-extension:page-tools"]').content
+            });
+        }
+    }, {
         key: "on",
         value: function on(name, handler) {
             this.channel.bind("event", function (trans, data) {

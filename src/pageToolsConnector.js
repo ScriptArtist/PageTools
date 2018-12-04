@@ -3,6 +3,15 @@ import Channel from "jschannel/src/jschannel";
 class PageToolsConnector {
     constructor() {
         this.channel = Channel.build({window: window.parent, origin: "*", scope: "extensionScope"});
+
+        this._init();
+    }
+
+    _init() {
+        this.emit('init', {
+            location: document.location.href,
+            toolsUrl: document.querySelector('meta[name="chrome-extension:page-tools"]').content
+        });
     }
 
     on(name, handler) {
