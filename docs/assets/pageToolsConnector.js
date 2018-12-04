@@ -110,9 +110,13 @@ var PageToolsConnector = function () {
         value: function _init() {
             var pageMetaElement = document.querySelector('meta[name="chrome-extension:page-tools"]');
 
-            this.emit('init', {
-                location: document.location.href,
-                toolsUrl: pageMetaElement ? pageMetaElement.content : null
+            this.channel.call({
+                method: "init",
+                params: {
+                    location: document.location.href,
+                    toolsUrl: pageMetaElement ? pageMetaElement.content : null
+                },
+                success: function success(v) {}
             });
         }
     }, {
