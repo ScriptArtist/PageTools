@@ -8,9 +8,11 @@ class PageToolsConnector {
     }
 
     _init() {
+        var pageMetaElement = document.querySelector('meta[name="chrome-extension:page-tools"]');
+
         this.emit('init', {
             location: document.location.href,
-            toolsUrl: document.querySelector('meta[name="chrome-extension:page-tools"]').content
+            toolsUrl: pageMetaElement? pageMetaElement.content : null
         });
     }
 
