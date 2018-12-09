@@ -1,21 +1,21 @@
 {
-  "name": "scalable",
+  "name": "page-tools",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/pageToolsConnector.js",
   "scripts": {
     "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ScriptArtist/Scalable.git"
+    "url": "git+https://github.com/ScriptArtist/PageTools.git"
   },
-  "author": "Alexander Ostapenko <alexander.silverman25@gmail.com> (https://scriptartist.github.io/Scalable/)",
+  "author": "Alexander Ostapenko <alexander.silverman25@gmail.com> (https://scriptartist.github.io/PageTools/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ScriptArtist/Scalable/issues"
+    "url": "https://github.com/ScriptArtist/PageTools/issues"
   },
-  "homepage": "https://github.com/ScriptArtist/Scalable#readme",
+  "homepage": "https://github.com/ScriptArtist/PageTools",
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-core": "^6.25.0",
