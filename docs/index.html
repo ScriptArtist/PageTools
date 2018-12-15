@@ -5,6 +5,7 @@
     <title>Page Tools</title>
     <link rel="stylesheet" href="assets/bootstrap.css">
     <link rel="stylesheet" href="assets/styles.css">
+    <link href="assets/rainbow/github.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="container">
@@ -17,7 +18,7 @@
                     </p>
                     <p>
                         <a class="btn btn-info" href="https://github.com/ScriptArtist/PageTools" role="button">View on GitHub</a>
-                        <a class="btn btn-success" href="https://chrome.google.com/webstore/detail/kanipjfmfdhalhookehodhnfiigdpiap" role="button">Install Chrome Extension</a>
+                        <a class="btn btn-success" href="https://chrome.google.com/webstore/detail/kanipjfmfdhalhookehodhnfiigdpiap" target="_blank" role="button">Install Chrome Extension</a>
                     </p>
                     Made by <a href="https://twitter.com/quiksilverost">@quiksilverost</a>
                 </div>
@@ -30,60 +31,134 @@
         <div class="row">
             <div>
                 <h2>Live Demo</h2>
-                    <ul>
-                        <!--<li><a href="#">Basic usages</a></li>-->
-                        <li><a href="examples/todos/index.html">Todos</a></li>
-                        <li><a href="examples/admin_panel/index.html">Admin Panel</a></li>
-                    </ul>
-                <!--<h2>Install</h2>-->
+                To view the demo pages you need:
+                <ul>
+                    <li><a href="https://chrome.google.com/webstore/detail/kanipjfmfdhalhookehodhnfiigdpiap" target="_blank" role="button">Install Chrome Extension</a></li>
+                    <li>Open devTools on the demo page and go to the "Page Tools" tab</li>
+                </ul>
+                <b>Demo Pages</b>
+                <ul>
+                    <li><a href="examples/todos/index.html">Todos</a></li>
+                    <li><a href="examples/admin_panel/index.html">Admin Panel</a></li>
+                </ul>
+                <h2>Overview</h2>
+                The Page Tools extension adds functionality to the Chrome DevTools. You can add UI elements on developers panel and interact with the inspected page.
+                <h5>Structure:</h5>
+                <img src="images/overview.png" height="250">
+                <h2>Quick Start</h2>
+                <ol class="inside-list">
+                    <li>
+                        Install extension
+                        <ul>
+                            <li>
+                                <a href="https://chrome.google.com/webstore/detail/kanipjfmfdhalhookehodhnfiigdpiap" target="_blank" role="button">Google Chrome Extension</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Add tools page in your project, which will be displayed in DevTools frame
+                        <h6>tools.html</h6>
+                        <figure class="highlight">
+                    <pre><code class="language-html" data-lang="html">&lt;html&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        My Page Tools
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </figure>
+                    </li>
+                    <li>
+                        Add link to tools page in main template file of your project.
+                        <h6>index.html</h6>
+                        <figure class="highlight">
+                    <pre><code class="language-html" data-lang="html">&lt;html&gt;
+    &lt;head&gt;
+        ...
+        &lt;meta name="chrome-extension:page-tools" content="http://localhost/tools.html"&gt;
+    &lt;/head&gt;
+    ...
+&lt;/html&gt;</code></pre>
+                        </figure>
+                    </li>
+                    <li>
+                        Include pageToolsConnector to communicate between tools frame and main page
 
-                <!--<figure class="highlight">-->
-                    <!--<pre><code class="language-html" data-lang="html">npm install scalable &#45;&#45;save</code></pre>-->
-                <!--</figure>-->
+                        <figure class="highlight figure-code figure-code_margin-bottom">
+                            <pre><code data-language="html">npm install page-tools --save</code></pre>
+                        </figure>
+                        Include in html:
+                        <h6>tools.html</h6>
+                        <figure class="highlight figure-code figure-code_margin-bottom">
+                            <pre><code data-language="html">...
+&lt;head&gt;
+    &lt;script src="/node_modules/page-tools/dist/pageToolsConnector.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+...</code></pre></figure>
+                        Or using import in js file:
+                        <h6>tools.js</h6>
+                        <figure class="highlight figure-code"><pre><code data-language="javascript">import PageToolsConnector from "page-tools";</code></pre></figure>
+                        <h6>tools.html</h6>
+                        <figure class="highlight figure-code figure-code_margin-bottom"><pre><code data-language="html">&lt;script src="tools.js"&gt;&lt;/script&gt;</code></pre></figure>
+                    </li>
+                </ol>
+                <h2>Usage</h2>
+                <h4>Initialize connection</h4>
+                Create connection in tools.html tab to communicate with main page
+                <h6>tools.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">var connection = new PageToolsConnector();</code></pre></figure>
 
-                <!--<h2>Usage</h2>-->
+                <h4>.eval()</h4>
+                The eval() method runs the js code on main page
+                <h6>Syntax</h6>
+                <figure class="highlight"><pre><code data-language="javascript">.eval(expression [, response])</code></pre></figure>
 
-                <!--<figure class="highlight">-->
-                    <!--<pre><code class="language-html" data-lang="html">var scalable = new Scalable(containerEl, options);</code></pre>-->
-                <!--</figure>-->
+                <h5>Example:</h5>
+                <h6>tools.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">// eval alert on page
+connection.eval(`alert('hello world')`);
 
-                <!--<h2>Options</h2>-->
-                <!--<ul>-->
-                    <!--<li><code>align</code>: <code>left | center | right</code> Horizontal alignment of an element. <code>default: left</code></li>-->
-                    <!--<li><code>verticalAlign</code>: <code>top | center | bottom</code> Vertical alignment of an element. <code>default: top</code></li>-->
-                    <!--<li><code>containerHeight</code>: <code>fixed | auto</code> Behaviorur of container height property <code>default: fixed</code>-->
-                        <!--<ul>-->
-                            <!--<li><code>fixed</code> - The element fits inside the container.</li>-->
-                            <!--<li><code>auto</code> - Enlargement of the element increases the height of the container.</li>-->
-                        <!--</ul>-->
-                    <!--</li>-->
-                    <!--<li><code>minWidth</code>: Minimum width of an element.</li>-->
-                    <!--<li><code>maxWidth</code>: Maximum width of an element.</li>-->
-                    <!--<li><code>minScale</code>: Minimum scale of an element.</li>-->
-                    <!--<li><code>maxScale</code>: Maximum width of an element.</li>-->
-                <!--</ul>-->
+// eval with response
+connection.eval(`document.title`, function(title) {
+    document.body.innerHTML = title;
+});</code></pre></figure>
 
-                <!--<a name="demo"></a>-->
-                <!--<h2>Demo</h2>-->
-                <!--<p><i>* to see result resize container by right buttom corner</i></p>-->
-                <!--<div class="bs-example" style="min-height: 500px">-->
-                <!--</div>-->
-                <!--<figure class="highlight">-->
-                    <!--<pre><code>  <b>HTML:</b>-->
-    <!--&lt;div class="container"&gt;-->
-        <!--&lt;div class="element"&gt;-->
-            <!--...-->
-        <!--&lt;/div&gt;-->
-    <!--&lt;/div&gt;-->
+                <h4>.on()</h4>
+                The on() method attaches handlers to events from the main page.
+                <h6>Syntax</h6>
+                <figure class="highlight"><pre><code data-language="javascript">.on(name, handler)</code></pre></figure>
+                <h5>Example:</h5>
+                <h6>tools.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">//catch event from main page
+connection.on("click_some_element", function(params) {
+    document.body.innerHTML = params.className;
+});</code></pre></figure>
+                <h6>index.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">//Add event handler on main page
+document.body.addEventListener('click', function(e) {
+    // throw event to tools page
+    window.postMessage({name: 'click_some_element', params: { className: e.path[0].className }, source: 'page-tools-extension'}, '*');
+});</code></pre></figure>
 
-  <!--<b>JS:</b>-->
-    <!--var scalable = new Scalable(".container", {-->
-        <!--align: 'center',-->
-        <!--verticalAlign: 'center'-->
-    <!--});</code></pre>-->
-                <!--</figure>-->
+                <h4>.emit()</h4>
+                Any event handlers attached with window.addEventListener on main page are triggered when the corresponding event occurs.
+                <h6>Syntax</h6>
+                <figure class="highlight"><pre><code data-language="javascript">.emit(name [, params])</code></pre></figure>
+                <h5>Example:</h5>
+                <h6>tools.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">//Add event handler
+document.body.addEventListener('click', function(e) {
+    // emit event to index page
+    connection.emit("alert_text", "Connection works!");
+});</code></pre></figure>
+                <h6>index.js</h6>
+                <figure class="highlight"><pre><code data-language="javascript">//catch event from tools page
+window.addEventListener("alert_text", function(e) {
+    alert(e.detail);
+});</code></pre></figure>
             </div>
         </div>
     </div>
+    <script src="assets/rainbow/rainbow-custom.min.js"></script>
 </body>
 </html>

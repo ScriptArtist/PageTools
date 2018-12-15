@@ -98,3 +98,21 @@ code {
         flex-direction: column;
     }
 }
+
+.inside-list {
+    padding: 0;
+    list-style-position: inside;
+    line-height: 1.5;
+}
+
+.figure-code {
+    margin: 5px 0;
+}
+
+.figure-code pre {
+    margin: 0;
+}
+
+.figure-code_margin-bottom {
+    margin-bottom: 15px;
+}
